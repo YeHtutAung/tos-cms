@@ -9,8 +9,16 @@ function ProtectedLayout() {
   if (!accessToken) return <Navigate to="/login" replace />;
   return (
     <div className="min-h-screen bg-gray-50">
-      <header className="p-4 border-b bg-white">TOS</header>
-      <main className="p-4 max-w-5xl mx-auto">
+      <header className="p-4 border-b bg-white flex items-center justify-between">
+        <div>TOS</div>
+        <button
+          className="text-sm underline"
+          onClick={() => { useAuthStore.getState().clear(); location.href = "/login"; }}
+        >
+          Logout
+        </button>
+      </header>
+      <main className="p-4">
         <Outlet />
       </main>
     </div>
